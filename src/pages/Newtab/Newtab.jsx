@@ -4,23 +4,24 @@ import './Newtab.css';
 import './Newtab.scss';
 
 const Newtab = () => {
+  
+  chrome.runtime.onMessage
+    .addListener(function(message,sender,sendResponse) { 
+        addImagesToContainer(message);               
+        sendResponse("OK");
+    });
+
+
+    
+    const addImagesToContainer = (urls) => {
+      document.write(JSON.stringify(urls));
+      console.log(JSON.stringify(urls))
+  }
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/pages/Newtab/Newtab.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React!
-        </a>
-        <h6>The color of this paragraph is defined using SASS.</h6>
-      </header>
+      {addImagesToContainer()}
     </div>
   );
 };
