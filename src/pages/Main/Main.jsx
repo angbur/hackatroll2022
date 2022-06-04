@@ -19,8 +19,9 @@ const Main = () => {
   const [ expand, setExpand ] = useState(false);
 
   const handleStartAnalysis = (event) => {
+      event.preventDefault();
       setUrl(event.target.value);
-      setExpand(expand ? false : true)
+      setExpand(true)
   };
 
   useEffect(() => {
