@@ -1,25 +1,10 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardMedia,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemText,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Card, CardActions, CardMedia } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import logo from '../../assets/img/logo.svg';
 import './Main.css';
 import './Main.scss';
 
 const Main = () => {
   const [imageList, setImageList] = useState([]);
-  const [status, setStatus] = useState('idle');
 
   useEffect(() => {
     const getImageList = (message, sender, sendResponse) => {
