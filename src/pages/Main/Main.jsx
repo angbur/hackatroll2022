@@ -45,7 +45,7 @@ const Main = () => {
       m={3}
       sx={{
         height: '100vh',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(800px, 1fr))',
+        
       }}
     >
       {imageList
