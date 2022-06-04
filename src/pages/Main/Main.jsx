@@ -14,10 +14,10 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import logo from '../../assets/img/logo.svg';
-import './Newtab.css';
-import './Newtab.scss';
+import './Main.css';
+import './Main.scss';
 
-const Newtab = () => {
+const Main = () => {
   const [imageList, setImageList] = useState([]);
   const [status, setStatus] = useState('idle');
 
@@ -79,4 +79,4 @@ const Newtab = () => {
   );
 };
 
-export default Newtab;
+export default Main;
