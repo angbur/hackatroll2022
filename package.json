@@ -18,10 +18,14 @@
     "@hot-loader/react-dom": "^17.0.2",
     "@mui/material": "^5.8.2",
     "@reduxjs/toolkit": "^1.8.2",
+    "@tensorflow-models/coco-ssd": "^2.2.2",
+    "@tensorflow/tfjs": "^3.18.0",
+    "@tensorflow/tfjs-backend-cpu": "^3.18.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0",
     "react-redux": "^8.0.2",
+    "styled-components": "^5.3.5",
     "webext-redux": "^2.1.9"
   },
   "devDependencies": {
