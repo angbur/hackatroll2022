@@ -35,6 +35,14 @@
   color: #61dafb;
 }
 
+.imgWithIcon::before {
+  content: url("data:image/svg+xml; utf8, https://cdn.glitch.global/3e314939-5f7d-44fb-905d-2d8c3bda3995/troll.svg?v=1654385849937");
+  display: block;
+  width: 22px;
+  height: 10px;
+  margin: 10px 5px 0 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

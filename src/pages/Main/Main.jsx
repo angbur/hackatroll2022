@@ -1,26 +1,28 @@
 import {
-  Avatar,
   Box,
   Button,
   Card,
   CardActions,
+  CardContent,
   CardMedia,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemText,
-  Typography,
+  Collapse,
+  Divider,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import logo from '../../assets/img/logo.svg';
-import Deep from '../Deep/Deep';
+import SerpLinks from '../Serp/SerpLinks';
 import './Main.css';
 import './Main.scss';
 
 const Main = () => {
   const [imageList, setImageList] = useState([]);
-  const [status, setStatus] = useState('idle');
+  const [url, setUrl] = useState('');
+  const [expand, setExpand] = useState(false);
+
+  const handleStartAnalysis = (event) => {
+    event.preventDefault();
+    setUrl(event.target.value);
+    setExpand(true);
+  };
 
   useEffect(() => {
     const getImageList = (message, sender, sendResponse) => {
@@ -36,50 +38,61 @@ const Main = () => {
   }, []);
 
   return (
-    <>
-      <Deep />
-      <Box
-        className={'App'}
-        display={'grid'}
-        p={2}
-        m={3}
-        sx={{
-          height: '100vh',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-        }}
-      >
-        {imageList
-          ? imageList.map((img, id) => (
-              <Card
-                key={`item-${id}`}
-                sx={{
-                  height: '400px',
-                  boxShadow: ' 0 0 5px 5px #F0F0F0',
-                  padding: '2rem',
-                  margin: '2rem',
-                }}
-              >
+    <Box
+      className={'App'}
+      display={'grid'}
+      p={2}
+      m={3}
+      sx={{
+        height: '100vh',
+      }}
+    >
+      {imageList
+        ? imageList.map((img, id) => (
+            <Box
+              display={'flex'}
+              key={`item-${id}`}
+              sx={{
+                height: `430px`,
+                boxShadow: ' 0 0 5px 5px #F0F0F0',
+                padding: '2rem',
+                margin: '2rem',
+              }}
+            >
+              <Box>
                 <CardMedia>
                   <Box
                     component="img"
                     key={`itemAvatar-${id}`}
                     src={img.toString()}
-                    style={{ height: '200px' }}
+                    style={{ height: '200px', margin: '0 2rem' }}
                     alt=""
                   />
                 </CardMedia>
                 <CardActions
                   style={{ display: 'flex', justifyContent: 'center' }}
                 >
-                  <Button variant={'contained'} sx={{ margin: '2rem 0' }}>
+                  <Button
+                    variant={'contained'}
+                    sx={{ margin: '2rem 0' }}
+                    onClick={handleStartAnalysis}
+                    value={img.toString()}
+                  >
                     Analizuj
                   </Button>
                 </CardActions>
-              </Card>
-            ))
-          : null}
-      </Box>
-    </>
+              </Box>
+              <Divider orientation="vertical" flexItem />
+              <Collapse
+                orientation="horizontal"
+                in={url === img.toString() && expand ? true : false}
+              >
+                <SerpLinks imageUrl={img.toString()} />
+              </Collapse>
+            </Box>
+          ))
+        : null}
+    </Box>
   );
 };
 
