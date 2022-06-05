@@ -63,7 +63,6 @@ const Popup = () => {
       //img.style.setProperty()
       return img
   });
-
     
   }
 

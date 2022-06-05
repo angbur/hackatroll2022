@@ -1,7 +1,8 @@
-import { Container, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import ObjectDetector from '../ObjectDetector/ObjectDetector';
 
-const Deep = ({ pageUrl, originImageUrl }) => {
+const Deep = (props) => {
   const [images, setImages] = useState([]); // array ze zdjeciami thumbnail!!!
   const [imageUrls, setImageUrls] = useState([]);
   const [originImageRatio, setOriginImageRatio] = useState({});
@@ -16,7 +17,7 @@ const Deep = ({ pageUrl, originImageUrl }) => {
           width: this.width,
           height: this.height,
           ratio: this.width / this.height,
-          origin: pageUrl,
+          origin: props.pageUrl,
         });
       };
       image.onerror = function () {
@@ -27,20 +28,20 @@ const Deep = ({ pageUrl, originImageUrl }) => {
   }
 
   useEffect(() => {
-    fetch(`https://serp-api-proxy.herokuapp.com/content_images/?url=${pageUrl}`)
+    fetch(`https://serp-api-proxy.herokuapp.com/content_images/?url=${props.pageUrl}`)
       .then((res) => res.json())
       .then((data) =>
         setImageUrls(data.filter((obj) => obj.src).map((obj) => obj.src))
       )
       .catch((err) => console.error(err));
-  }, [pageUrl]);
+  }, [props.pageUrl]);
 
   useEffect(() => {
-    getImageMeta(originImageUrl)
+    getImageMeta(props.originImageUrl)
       .then((data) => setOriginImageRatio(data))
       .catch((err) => console.error(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [originImageUrl]);
+  }, [props.originImageUrl]);
 
   useEffect(() => {
     const imagePromises = imageUrls.map((url) =>
@@ -59,19 +60,16 @@ const Deep = ({ pageUrl, originImageUrl }) => {
   }, [imageUrls]);
 
   return (
-    <Container>
-      <Typography>ZDJECIE ZE STRONY</Typography>
-      <Typography>{pageUrl}</Typography>
-      {images.map((image, id) =>
-        id < 3 ? (
-          <Container key={image.url}>
-            <img src={image.url} alt="" />
-            <Typography paragraph>{image.ratio}</Typography>
-            <Typography paragraph>{image.origin}</Typography>
-          </Container>
-        ) : null
+    <>  
+      {images.filter((elem, id) => id < 3).map((image) =>
+        (
+          <Box key={image.url} m={2}>
+            <img src={image.url} alt="" height='80px' />
+          </Box>
+        )
       )}
-    </Container>
+      <ObjectDetector/>
+    </>
   );
 };
 

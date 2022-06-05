@@ -1,9 +1,7 @@
 import {
   Box,
   Button,
-  Card,
   CardActions,
-  CardContent,
   CardMedia,
   Collapse,
   Divider,
@@ -16,12 +14,12 @@ import './Main.scss';
 const Main = () => {
   const [imageList, setImageList] = useState([]);
   const [url, setUrl] = useState('');
-  const [expand, setExpand] = useState(false);
+  const [ expand, setExpand ] = useState(false);
 
   const handleStartAnalysis = (event) => {
-    event.preventDefault();
-    setUrl(event.target.value);
-    setExpand(true);
+      event.preventDefault();
+      setUrl(event.target.value);
+      setExpand(true)
   };
 
   useEffect(() => {
@@ -45,6 +43,7 @@ const Main = () => {
       m={3}
       sx={{
         height: '100vh',
+        
       }}
     >
       {imageList
@@ -59,35 +58,31 @@ const Main = () => {
                 margin: '2rem',
               }}
             >
-              <Box>
-                <CardMedia>
-                  <Box
-                    component="img"
-                    key={`itemAvatar-${id}`}
-                    src={img.toString()}
-                    style={{ height: '200px', margin: '0 2rem' }}
-                    alt=""
-                  />
-                </CardMedia>
-                <CardActions
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                >
-                  <Button
-                    variant={'contained'}
-                    sx={{ margin: '2rem 0' }}
-                    onClick={handleStartAnalysis}
-                    value={img.toString()}
-                  >
-                    Analizuj
-                  </Button>
-                </CardActions>
-              </Box>
-              <Divider orientation="vertical" flexItem />
-              <Collapse
-                orientation="horizontal"
-                in={url === img.toString() && expand ? true : false}
+            <Box>
+              <CardMedia>
+                <Box
+                  component="img"
+                  key={`itemAvatar-${id}`}
+                  src={img.toString()}
+                  style={{ height: '200px', margin: '0 2rem' }}
+                  alt=""
+                />
+              </CardMedia>
+              <CardActions
+                style={{ display: 'flex', justifyContent: 'center' }}
               >
-                <SerpLinks imageUrl={img.toString()} />
+                <Button 
+                  variant={'contained'} 
+                  sx={{ margin: '2rem 0' }}
+                  onClick={handleStartAnalysis}
+                  value={img.toString()}>
+                  Analizuj
+                </Button>
+              </CardActions>
+              </Box>
+          <Divider orientation="vertical" flexItem />
+              <Collapse orientation="horizontal" in={url === img.toString() && expand ? true : false}>
+                  <SerpLinks imageUrl={img.toString()}/>                  
               </Collapse>
             </Box>
           ))
