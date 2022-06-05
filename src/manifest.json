@@ -11,7 +11,7 @@
   "icons": {
     "128": "icon-128.png"
   },
-  "permissions": ["scripting", "activeTab"],
+  "permissions": [ "declarativeContent", "storage", "<all_urls>", "scripting", "activeTab"],
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*", "<all_urls>"],

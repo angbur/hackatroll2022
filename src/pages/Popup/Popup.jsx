@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button } from '@mui/material';
+import './Popup.css';
+import svgIcon from '../../assets/img/troll.svg';
 
 const Popup = () => {
   const grabImages = () => {
@@ -49,6 +51,37 @@ const Popup = () => {
       }
     });
   };
+
+
+  function injectedFunction() {
+    const images = document.querySelectorAll('img');
+    const mySvg = document.createElement('img');
+    mySvg.style.position = 'absolute';
+    mySvg.src = 'https://cdn.glitch.global/3e314939-5f7d-44fb-905d-2d8c3bda3995/troll.svg?v=1654385849937';
+    Array.from(images).map((img,id)=>{
+      img.style.position = 'relative';
+      //img.style.setProperty()
+      return img
+  });
+
+    
+  }
+
+  
+
+  useEffect(()=> {
+    chrome.tabs.query({active:true}, function (tabs){
+      const tab = tabs[0];
+      if (tab) {
+        chrome.scripting.executeScript({
+          target: { tabId: tab.id },
+          function: injectedFunction
+        });
+      } else {
+        alert('There are no active tabs');
+      }
+    })
+  },[]);
 
   return (
     <div className="App">
