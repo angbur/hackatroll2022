@@ -2,8 +2,6 @@ import "@tensorflow/tfjs-backend-cpu";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
 import { useRef, useState, useEffect } from 'react';
 import styled from "styled-components";
-import { Button } from '@mui/material';
-
 const ObjectDetectorContainer = styled.div`
   display: flex;
   flex-direction: column;

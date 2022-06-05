@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Button } from '@mui/material';
 import './Popup.css';
-import svgIcon from '../../assets/img/troll.svg';
 
 const Popup = () => {
   const grabImages = () => {

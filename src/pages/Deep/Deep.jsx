@@ -1,6 +1,5 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import ObjectDetector from '../ObjectDetector/ObjectDetector';
 
 const Deep = (props) => {
   const [images, setImages] = useState([]); // array ze zdjeciami thumbnail!!!
@@ -68,7 +67,6 @@ const Deep = (props) => {
           </Box>
         )
       )}
-      <ObjectDetector/>
     </>
   );
 };
