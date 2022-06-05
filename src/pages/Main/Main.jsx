@@ -7,6 +7,7 @@ import {
   Divider,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import ObjectDetector from '../ObjectDetector/ObjectDetector';
 import SerpLinks from '../Serp/SerpLinks';
 import './Main.css';
 import './Main.scss';
@@ -60,13 +61,14 @@ const Main = () => {
             >
             <Box>
               <CardMedia>
-                <Box
+              <ObjectDetector imageElement = {img}/>
+               {/*  <Box
                   component="img"
                   key={`itemAvatar-${id}`}
                   src={img.toString()}
-                  style={{ height: '200px', margin: '0 2rem' }}
+                  style={{ height: '200px', margin: '2rem' }}
                   alt=""
-                />
+                /> */}
               </CardMedia>
               <CardActions
                 style={{ display: 'flex', justifyContent: 'center' }}

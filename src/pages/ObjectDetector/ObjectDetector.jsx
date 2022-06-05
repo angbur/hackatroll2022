@@ -2,6 +2,8 @@ import "@tensorflow/tfjs-backend-cpu";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
 import { useRef, useState, useEffect } from 'react';
 import styled from "styled-components";
+import React from 'react';
+
 const ObjectDetectorContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,7 +12,7 @@ const ObjectDetectorContainer = styled.div`
 
 const DetectorContainer = styled.div`
   min-width: 200px;
-  height: 700px;
+  height: 200px;
   border: 3px solid #fff;
   border-radius: 5px;
   display: flex;
